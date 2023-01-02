@@ -20,9 +20,7 @@
     //-------------------FUNCTION--------------------
     const changeQty = (type)=>{
         if(type == 'min'){
-            if(buy_product.qty > 1){
-                buy_product.qty -= 1
-            }
+            buy_product.qty > 1 ? buy_product.qty -= 1 : null
         }else{
             buy_product.qty += 1
         }
@@ -68,7 +66,7 @@
                             <button class="flex items-center justify-center text-2xl px-3 py-1 border-[#7971ea] border-[1.5px] font-light rounded-r-md hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-xl hover:text-white" @click="changeQty('plus')"> + </button>
                         </div>
                         <div class="mt-10">
-                            <button class="w-[30%] uppercase tracking-wider text-white bg-[#7971ea] hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-xl text-sm font-light py-3 rounded-sm">Add To Cart</button>
+                            <button class="w-[30%] uppercase tracking-wider text-white bg-[#7971ea] hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-2xl text-sm font-light py-3 rounded-sm" @click="$router.push('/cart')">Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -84,17 +82,3 @@
         </footer>
     </div>
 </template>
-
-<style scoped>
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    }
-
-    /* Firefox */
-    input[type=number] {
-    -moz-appearance: textfield;
-    }
-</style>
