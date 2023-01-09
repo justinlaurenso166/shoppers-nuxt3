@@ -1,14 +1,7 @@
 <script setup>
-    import axios from "axios"
-
     const cartLength = ref(0)
 
     const countAllCart = async()=>{
-    //     // await axios.get("http://localhost:3000/api/cart").then((res)=>{
-    //     //     if(res.status == 200){
-    //     //         cartLength.value = res.data.data.length;
-    //     //     }
-    //     // })
         await useFetch("/api/cart", {
             onResponse({response}){
                 console.log(response._data)

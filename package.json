@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.2.0",
+    "@nuxtjs/vercel-builder": "^0.24.0",
     "axios": "^1.2.2",
     "mongoose": "^6.8.2",
     "util.promisify": "^1.1.1",
