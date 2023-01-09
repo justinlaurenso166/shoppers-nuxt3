@@ -2,7 +2,7 @@
     "version": 2,
     "routes": [{
         "src": "/api/products",
-        "dest": "server/api/product/index.js"
+        "dest": "server/api/products/index.js"
     }],
     "builds": [{
         "src": "server/api/**/*.js",
