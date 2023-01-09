@@ -1,31 +1,8 @@
 <script setup>
+    import axios from "axios"
+
     const carts = ref([])
     const total = ref(0)
-    
-    carts.value = [
-        {
-            id: 1,
-            product_id:1,
-            image: "/images/cloth_1.jpg",
-            name: "Tank Top",
-            desc: "Finding perfect t-shirt",
-            price: 50,
-            qty: 1,
-            total: 50,
-        },
-        {
-            id: 2,
-            product_id: 2,
-            image: "/images/cloth_2.jpg",
-            name: "Polo Shirt",
-            desc: "Finding perfect t-shirt",
-            price: 50,
-            qty: 2,
-            total: 100,
-        }
-    ];
-
-
 
      //-------------------FUNCTION--------------------
     const sumTotal = ()=>{
@@ -45,7 +22,21 @@
         }
     }
 
+    const fetchAllCart = async()=>{
+        await useFetch("/api/cart",{
+            onResponse({response}){
+                if(response.status === 200){
+                    carts.value = response._data.data;
+                }
+            }
+        })
+    }
+
     onMounted(()=>{
+    })
+
+    onBeforeMount(async()=>{
+        await fetchAllCart()
         sumTotal()
     })
 </script>
@@ -63,6 +54,7 @@
         </header>
 
         <main>
+            <!-- <div>{{carts}}</div> -->
             <div class="w-[60%] mx-auto py-20">
                 <table class="table-fixed border-collapse border border-slate-500 w-full">
                     <thead>
@@ -78,10 +70,10 @@
                     <tbody class="text-center">
                         <tr v-for="cart in carts" :key="cart.id">
                             <td class="border border-slate-300 font-light p-3">
-                                <img :src="cart.image">
+                                <img :src="`/images/${cart.product.image}`">
                             </td>
                             <td class="border border-slate-300 font-medium text-lg">
-                                {{cart.name}}
+                                {{cart.product.name}}
                             </td>
                             <td class="border border-slate-300 font-light tracking-wider">
                                 ${{cart.price}}

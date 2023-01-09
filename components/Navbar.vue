@@ -1,5 +1,26 @@
 <script setup>
-    
+    import axios from "axios"
+
+    const cartLength = ref(0)
+
+    const countAllCart = async()=>{
+    //     // await axios.get("http://localhost:3000/api/cart").then((res)=>{
+    //     //     if(res.status == 200){
+    //     //         cartLength.value = res.data.data.length;
+    //     //     }
+    //     // })
+        await useFetch("/api/cart", {
+            onResponse({response}){
+                console.log(response._data)
+                cartLength.value = response._data.data.length
+                return response._data
+            }
+        })
+    }
+        
+    onBeforeMount(async()=>{
+        await countAllCart()
+    })
 </script>
 
 <template>
@@ -49,7 +70,7 @@
                         </Icon>
                     </span>
                 </NuxtLink>
-                <NuxtLink to="#">
+                <NuxtLink to="/cart">
                     <span class="relative">
                         <Icon 
                             name="mdi:cart" 
@@ -57,7 +78,7 @@
                             class="text-gray-400 hover:text-gray-500 transition-all duration-150">
                         </Icon>
                         <span class="w-6 h-6 text-white text-xs bg-[#7971ea] flex items-center justify-center rounded-full absolute top-0 right-0 -mt-5 -mr-3">
-                            1
+                            {{cartLength}}
                         </span>
                     </span>
                 </NuxtLink>
