@@ -2,6 +2,6 @@
 export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss','nuxt-icon'],
     nitro:{
-        preset: "netlify"
+        preset: "vercel"
     },
 })
