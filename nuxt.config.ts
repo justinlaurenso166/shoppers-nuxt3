@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss','nuxt-icon'],
     nitro:{
-        preset: 'node-server'
+        preset: 'vercel',
     },
+    serverHandlers: [{
+        route: "/api/products", handler: "~/server/api/products.js"
+    }]
 })
