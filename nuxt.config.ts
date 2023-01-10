@@ -4,7 +4,4 @@ export default defineNuxtConfig({
     nitro:{
         preset: 'vercel',
     },
-    serverHandlers: [{
-        route: "/api/products", handler: "~/server/api/products.js"
-    }]
 })
