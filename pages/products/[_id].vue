@@ -78,7 +78,7 @@
 
         <main>
             <div class="w-[60%] mx-auto py-20">
-                <div class="flex gap-10" v-if="JSON.stringify(product) !== {}">
+                <div class="flex gap-10">
                     <div class="w-1/2">
                         <img v-if="product.image !== ''" :src="`/images/${product.image}`">
                     </div>
@@ -102,9 +102,6 @@
                             <button class="w-[30%] uppercase tracking-wider text-white bg-[#7971ea] hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-2xl text-sm font-light py-3 rounded-sm" @click="addToCart()">Add To Cart</button>
                         </div>
                     </div>
-                </div>
-                <div v-else>
-                    Loading
                 </div>
             </div>
         </main>
