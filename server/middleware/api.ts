@@ -1,4 +1,4 @@
-import { createRouter, defineEventHandler, useBase } from 'h3';
+import { createRouter, useBase } from 'h3';
 import cart from "../api/cart"
 import products from "../api/products"
 
