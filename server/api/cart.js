@@ -1,5 +1,5 @@
-import Cart from "./models/Cart";
-import Products from "./models/Products"
+import Cart from "../models/Cart";
+import Products from "../models/Products"
 
 export default defineEventHandler(async(event) => {
     const req = event.node.req;

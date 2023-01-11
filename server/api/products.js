@@ -1,4 +1,4 @@
-import Products from "./models/Products"
+import Products from "../models/Products"
 
 export default defineEventHandler(async(event) => {
     const req = event.node.req;
@@ -23,13 +23,13 @@ export default defineEventHandler(async(event) => {
             //* Get all products from database
             const all = await Products.find();
             response.data = all
-
-            res.writeHead(200).end(stringify(response))
+            res.statusCode = 200;
+            return response;
         } else {
             const getProduct = await Products.findById(query._id)
             response.data = getProduct;
-            console.log(getProduct)
-            res.writeHead(200).end(stringify(response))
+            res.statusCode = 200;
+            return response
         }
     } else if (req.method == "POST") {
         //* Get data from body

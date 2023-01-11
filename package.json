@@ -1,12 +1,13 @@
 {
+    "name": "shoppers-nuxt3",
+    "version": "0.1.0",
     "private": true,
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
-        "postinstall": "nuxt prepare",
-        "start": "node .output/server/index.mjs"
+        "postinstall": "nuxt prepare"
     },
     "devDependencies": {
         "nuxt": "3.0.0",
