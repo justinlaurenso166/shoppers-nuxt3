@@ -29,6 +29,7 @@
                 if(response.status === 200){
                     loading.value = false;
                     carts.value = response._data.data;
+                    sumTotal();
                 }
             }
         })
@@ -36,7 +37,6 @@
 
     onBeforeMount(async()=>{
         await fetchAllCart()
-        sumTotal()
     })
 </script>
 
@@ -55,49 +55,60 @@
         <main>
             <!-- <div>{{carts}}</div> -->
             <div class="w-[60%] mx-auto py-20">
-                <div v-if="loading" class="flex justify-center items-center py-[10  rem]">
+                <div v-if="loading" class="flex justify-center items-center py-[10rem]">
                     <Loading />
                 </div>
-                <table class="table-fixed border-collapse border border-slate-500 w-full" v-else>
-                    <thead>
-                        <tr>
-                            <th class="border border-slate-300 font-semibold text-md px-2 py-7">Image</th>
-                            <th class="border border-slate-300 font-semibold text-md px-2 py-7">Product</th>
-                            <th class="border border-slate-300 font-semibold text-md px-2 py-7">Price</th>
-                            <th class="border border-slate-300 font-semibold text-md px-2 py-7">Quantity</th>
-                            <th class="border border-slate-300 font-semibold text-md px-2 py-7">Total</th>
-                            <th class="border border-slate-300 font-semibold text-md px-2 py-7">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr v-for="cart in carts" :key="cart.id">
-                            <td class="border border-slate-300 font-light p-3">
-                                <img :src="`/images/${cart.product.image}`">
-                            </td>
-                            <td class="border border-slate-300 font-medium text-lg">
-                                {{cart.product.name}}
-                            </td>
-                            <td class="border border-slate-300 font-light tracking-wider">
-                                ${{cart.price}}
-                            </td>
-                            <td class="border border-slate-300 font-light">
-                                <div class="flex justify-center">
-                                    <button class="flex items-center justify-center text-3xl px-3 py-1 border-[#7971ea] border-[1.5px] font-light rounded-l-md hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-xl hover:text-white" @click="changeQty(cart.product_id, 'min')"> - </button>
-                                    <input type="number" v-model="cart.qty" class="w-14 text-center font-light text-md border-[#a8a2f3] border-l-0 border-r-0 border-[0.1px] focus:outline-none focus:border-[#7971ea]">
-                                    <button class="flex items-center justify-center text-2xl px-3 py-1 border-[#7971ea] border-[1.5px] font-light rounded-r-md hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-xl hover:text-white" @click="changeQty(cart.product_id,'plus')"> + </button>
-                                </div>
-                            </td>
-                            <td class="border border-slate-300 font-light tracking-wider">
-                                ${{cart.total}}
-                            </td>
-                            <td class="border border-slate-300 font-light">
-                                <button class="w-[30%] uppercase tracking-wider text-white bg-[#7971ea] hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-2xl text-sm font-light py-3 rounded-md hover:-translate-y-1">X</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div v-else>
+                    <div v-if="carts.length !== 0">
+                        <table class="table-fixed border-collapse border border-slate-500 w-full">
+                            <thead>
+                                <tr>
+                                    <th class="border border-slate-300 font-semibold text-md px-2 py-7">Image</th>
+                                    <th class="border border-slate-300 font-semibold text-md px-2 py-7">Product</th>
+                                    <th class="border border-slate-300 font-semibold text-md px-2 py-7">Price</th>
+                                    <th class="border border-slate-300 font-semibold text-md px-2 py-7">Quantity</th>
+                                    <th class="border border-slate-300 font-semibold text-md px-2 py-7">Total</th>
+                                    <th class="border border-slate-300 font-semibold text-md px-2 py-7">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr v-for="cart in carts" :key="cart.id">
+                                    <td class="border border-slate-300 font-light p-3">
+                                        <img :src="`/images/${cart.product.image}`">
+                                    </td>
+                                    <td class="border border-slate-300 font-medium text-lg">
+                                        {{cart.product.name}} <span class="capitalize text-sm">({{cart.size}})</span>
+                                    </td>
+                                    <td class="border border-slate-300 font-light tracking-wider">
+                                        ${{cart.price}}
+                                    </td>
+                                    <td class="border border-slate-300 font-light">
+                                        <div class="flex justify-center">
+                                            <button class="flex items-center justify-center text-3xl px-3 py-1 border-[#7971ea] border-[1.5px] font-light rounded-l-md hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-xl hover:text-white" @click="changeQty(cart.product_id, 'min')"> - </button>
+                                            <input type="number" v-model="cart.qty" class="w-14 text-center font-light text-md border-[#a8a2f3] border-l-0 border-r-0 border-[0.1px] focus:outline-none focus:border-[#7971ea]">
+                                            <button class="flex items-center justify-center text-2xl px-3 py-1 border-[#7971ea] border-[1.5px] font-light rounded-r-md hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-xl hover:text-white" @click="changeQty(cart.product_id,'plus')"> + </button>
+                                        </div>
+                                    </td>
+                                    <td class="border border-slate-300 font-light tracking-wider">
+                                        ${{cart.total}}
+                                    </td>
+                                    <td class="border border-slate-300 font-light">
+                                        <button class="w-[30%] uppercase tracking-wider text-white bg-[#7971ea] hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-2xl text-sm font-light py-3 rounded-md hover:-translate-y-1">X</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div v-else>
+                        <div class="flex flex-col justify-center items-center py-10">
+                            <img src="/images/no-data.png" width="130">
+                            <p class="mt-10 text-2xl">There's nothing in the cart</p>
+                            <button class="px-4 mt-10 uppercase tracking-wider text-white bg-[#7971ea] hover:text-white hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-2xl hover:-translate-y-0.5 text-sm font-light py-3 rounded-md" @click="$router.push('/shop')">Go to Shop</button>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="flex justify-between mt-14">
+                <div class="flex justify-between mt-14" v-if="carts.length !== 0">
                     <div class="w-[50%]">
                         <div class="flex w-full gap-12">
                             <button class="w-full uppercase tracking-wider text-white bg-[#7971ea] hover:bg-[#5a50e5] transition-all duration-150 hover:shadow-2xl hover:-translate-y-0.5 text-sm font-light py-3 rounded-md">Update Cart</button>

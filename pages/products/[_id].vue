@@ -1,6 +1,7 @@
 <script setup>
     import axios from "axios" 
     import mongoose from "mongoose"
+     const {$showToast} = useNuxtApp();
 
     const route = useRoute();
     const router = useRouter();
@@ -60,7 +61,8 @@
             body: buy_product,
             onResponse({response}){
                 if(response.status === 200){
-                    router.push("/cart");
+                    // router.push("/cart");
+                    $showToast(response._data.message, 'success', 2000);
                 }
             },
         })
