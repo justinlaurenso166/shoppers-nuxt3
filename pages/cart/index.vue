@@ -3,6 +3,7 @@
 
     const carts = ref([])
     const total = ref(0)
+    const loading = ref(true)
 
      //-------------------FUNCTION--------------------
     const sumTotal = ()=>{
@@ -26,14 +27,12 @@
         await useFetch("/api/cart",{
             onResponse({response}){
                 if(response.status === 200){
+                    loading.value = false;
                     carts.value = response._data.data;
                 }
             }
         })
     }
-
-    onMounted(()=>{
-    })
 
     onBeforeMount(async()=>{
         await fetchAllCart()
@@ -56,7 +55,10 @@
         <main>
             <!-- <div>{{carts}}</div> -->
             <div class="w-[60%] mx-auto py-20">
-                <table class="table-fixed border-collapse border border-slate-500 w-full">
+                <div v-if="loading" class="flex justify-center items-center py-[10  rem]">
+                    <Loading />
+                </div>
+                <table class="table-fixed border-collapse border border-slate-500 w-full" v-else>
                     <thead>
                         <tr>
                             <th class="border border-slate-300 font-semibold text-md px-2 py-7">Image</th>
