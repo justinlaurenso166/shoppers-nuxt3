@@ -1,9 +1,12 @@
 import Products from "../models/Products"
+import db from "../index"
 
 export default defineEventHandler(async(event) => {
     const req = event.node.req;
     const res = event.node.res;
     const query = getQuery(event);
+
+    await db();
 
     const stringify = (payload) => {
         return JSON.stringify(payload);

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const config = useRuntimeConfig(
 
 );
-export default async () => {
+const db = async () => {
     try {
         mongoose.set('strictQuery', false);
         await mongoose.connect(config.mongoUrl);
@@ -11,3 +11,5 @@ export default async () => {
         console.error("DB connection failed.", err);
     }
 };
+
+export default db;
