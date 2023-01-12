@@ -4,9 +4,9 @@ export default defineNuxtConfig({
     nitro:{
         plugins: ["~/server/index.ts"],
     },
-    plugins:[
-        "@/plugins/toast.js"
-    ],
+    // plugins:[
+    //     // "@/plugins/toast.js"
+    // ],
     runtimeConfig:{
         mongoUrl: process.env.MONGO_URL
     },

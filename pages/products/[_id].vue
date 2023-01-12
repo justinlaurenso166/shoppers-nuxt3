@@ -1,7 +1,8 @@
 <script setup>
     import axios from "axios" 
     import mongoose from "mongoose"
-     const {$showToast} = useNuxtApp();
+    import { createToast } from "mosha-vue-toastify";
+    import "mosha-vue-toastify/dist/style.css";
 
     const route = useRoute();
     const router = useRouter();
@@ -62,7 +63,14 @@
             onResponse({response}){
                 if(response.status === 200){
                     // router.push("/cart");
-                    $showToast(response._data.message, 'success', 2000);
+                    createToast(response._data.message,{
+                        type: "success",
+                        showCloseButton: false,
+                        timeout: 2000,
+                        showIcon: true,
+                        transition: "zoom",
+                        
+                    })
                 }
             },
         })

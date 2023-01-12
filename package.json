@@ -20,6 +20,7 @@
         "axios": "^1.2.2",
         "dotenv": "^16.0.3",
         "mongoose": "^6.8.2",
+        "mosha-vue-toastify": "^1.0.23",
         "util.promisify": "^1.1.1",
         "vue-ssr-carousel": "^1.9.0",
         "vue-toastification": "^2.0.0-rc.5",
