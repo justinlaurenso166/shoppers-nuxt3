@@ -11,7 +11,7 @@
     <div class="bg-[#f8f9fa] py-5">
         <div class="w-[60%] mx-auto">
             <div class="flex gap-3 font-light text-sm">
-                <NuxtLink to="/" class="text-[#7971ea]">
+                <NuxtLink to="/" class="text-primary">
                     Home
                 </NuxtLink>
                 <span> / </span>

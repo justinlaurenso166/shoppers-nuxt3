@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center gap-8 mt-5">
         <div class="dropdown-home">
-            <span class="font-light uppercase text-sm tracking-wider hover:text-[#7971ea] transition-all duration-150 flex items-center hover:cursor-pointer" id="dropdown-home">
+            <span class="font-light uppercase text-sm tracking-wider hover:text-primary transition-all duration-150 flex items-center hover:cursor-pointer" id="dropdown-home" @click="$router.push('/')">
                 Home
                 <Icon name="mdi:arrow-down-drop" size="25"></Icon>
             </span>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="dropdown-about">
-            <span class="font-light uppercase text-sm tracking-wider hover:text-[#7971ea] transition-all duration-150 flex items-center hover:cursor-pointer">
+            <span class="font-light uppercase text-sm tracking-wider hover:text-primary transition-all duration-150 flex items-center hover:cursor-pointer">
                 About
                 <Icon name="mdi:arrow-down-drop" size="25"></Icon>
             </span>
@@ -26,17 +26,17 @@
                 </div>
             </div>
         </div>
-        <NuxtLink to="/">
-            <span class="font-light uppercase text-sm tracking-wider hover:text-[#7971ea] transition-all duration-150">Shop</span>
+        <NuxtLink to="/shop">
+            <span class="font-light uppercase text-sm tracking-wider hover:text-primary transition-all duration-150">Shop</span>
         </NuxtLink>
         <NuxtLink to="/">
-            <span class="font-light uppercase text-sm tracking-wider hover:text-[#7971ea] transition-all duration-150">Catalogue</span>
+            <span class="font-light uppercase text-sm tracking-wider hover:text-primary transition-all duration-150">Catalogue</span>
         </NuxtLink>
         <NuxtLink to="/">
-            <span class="font-light uppercase text-sm tracking-wider hover:text-[#7971ea] transition-all duration-150">New Arrivals</span>
+            <span class="font-light uppercase text-sm tracking-wider hover:text-primary transition-all duration-150">New Arrivals</span>
         </NuxtLink>
         <NuxtLink to="/">
-            <span class="font-light uppercase text-sm tracking-wider hover:text-[#7971ea] transition-all duration-150">Contact</span>
+            <span class="font-light uppercase text-sm tracking-wider hover:text-primary transition-all duration-150">Contact</span>
         </NuxtLink> 
     </div>    
 </template>

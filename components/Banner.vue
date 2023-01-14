@@ -4,7 +4,7 @@
         <div class="max-w-[450px] flex flex-col gap-5">
             <h1 class="font-semibold text-5xl leading-tight">Finding Your Perfect Shoes</h1>
             <p class="font-light text-lg leading-loose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-            <button class="uppercase bg-[#7971ea] w-36 py-3 text-white font-light text-sm hover:bg-[#5a50e5] hover:-translate-y-1 transition-all duration-150 hover:shadow-xl tracking-widest">Shop Now</button>
+            <button class="uppercase bg-primary w-36 py-3 text-white font-light text-sm hover:bg-secondary hover:-translate-y-1 transition-all duration-150 hover:shadow-xl tracking-widest">Shop Now</button>
         </div>
     </div>
     </div>

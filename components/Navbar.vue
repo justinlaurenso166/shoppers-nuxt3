@@ -1,18 +1,15 @@
 <script setup>
-    const cartLength = ref(0)
+    const carts = useCartsStore()
 
-    const countAllCart = async()=>{
-        await useFetch("/api/cart", {
-            onResponse({response}){
-                console.log(response._data)
-                cartLength.value = response._data.data.length
-                return response._data
-            }
-        })
-    }
+    const cartsLength =ref(0)
+
+    watch(()=>carts.getCartsLength, ()=>{
+        cartsLength.value = carts.getCartsLength
+    })
         
     onBeforeMount(async()=>{
-        await countAllCart()
+        await carts.countAllCart()
+        cartsLength.value =  carts.getCartsLength
     })
 </script>
 
@@ -70,8 +67,8 @@
                             size="25" 
                             class="text-gray-400 hover:text-gray-500 transition-all duration-150">
                         </Icon>
-                        <span class="w-6 h-6 text-white text-xs bg-[#7971ea] flex items-center justify-center rounded-full absolute top-0 right-0 -mt-5 -mr-3">
-                            {{cartLength}}
+                        <span class="w-6 h-6 text-white text-xs bg-primary flex items-center justify-center rounded-full absolute top-0 right-0 -mt-5 -mr-3">
+                            {{cartsLength}}
                         </span>
                     </span>
                 </NuxtLink>

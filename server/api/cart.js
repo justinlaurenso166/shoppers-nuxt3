@@ -75,6 +75,32 @@ export default defineEventHandler(async(event) => {
                 res.writeHead(200).end(stringify(response))
             }
         }
+    } else if (req.method == "DELETE") {
+        const id = query._id;
+
+        const delete_item = await Cart.remove({ _id: id })
+
+        if (delete_item.deletedCount == 1) {
+            response.message = "Success remove item from cart"
+            res.writeHead(200).end(stringify(response))
+        }
+    } else if (req.method == "PUT") {
+        const data = await readBody(event)
+
+        data.total = data.qty * data.price;
+
+        const updateItem = await Cart.updateOne({
+            _id: data._id
+        }, { $set: { qty: data.qty, total: data.total } })
+
+        if (updateItem.modifiedCount == 1 || updateItem.matchedCount == 1) {
+            response.message = "Cart updated"
+            res.writeHead(200).end(stringify(response))
+        } else {
+            console.log("Error")
+            err.error = "No data found and not updated"
+            res.writeHead(404).end(stringify(err))
+        }
     } else {
         response.message = "The endpoint only accept GET methods"
         res.writeHead(405).end(stringify(response))
