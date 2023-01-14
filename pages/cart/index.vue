@@ -175,7 +175,7 @@
                     <div class="w-[50%]">
                         <div class="flex w-full gap-12">
                             <button class="w-full uppercase tracking-wider text-white bg-primary hover:bg-secondary transition-all duration-150 hover:shadow-2xl hover:-translate-y-0.5 text-sm font-light py-3 rounded-md" @click="updateCarts()">Update Cart</button>
-                            <button class="w-full uppercase tracking-wider text-primary bg-white border border-primary hover:text-white hover:bg-secondary transition-all duration-150 hover:shadow-2xl hover:-translate-y-0.5 text-sm font-light py-3 rounded-md">Continue Shopping</button>
+                            <button class="w-full uppercase tracking-wider text-primary bg-white border border-primary hover:text-white hover:bg-secondary transition-all duration-150 hover:shadow-2xl hover:-translate-y-0.5 text-sm font-light py-3 rounded-md" @click="$router.push('/shop')">Continue Shopping</button>
                         </div>
                         <div class="flex flex-col gap-4 mt-10">
                             <h4 class="text-xl ">Coupon</h4>

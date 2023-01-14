@@ -14,7 +14,7 @@
                 <p class="font-light text-sm text-gray-500 text-center mt-5 leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis ipsum animi deleniti fugiat. Ex, veniam?
                 </p>
-                <button class="uppercase bg-primary w-36 py-3 text-white font-light text-sm hover:bg-secondary hover:-translate-y-1 transition-all duration-150 hover:shadow-xl tracking-widest mt-7">Shop Now</button>
+                <button class="uppercase bg-primary w-36 py-3 text-white font-light text-sm hover:bg-secondary hover:-translate-y-1 transition-all duration-150 hover:shadow-xl tracking-widest mt-7" @click="$router.push('/shop')">Shop Now</button>
             </div>
         </div>
     </div>
