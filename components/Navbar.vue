@@ -3,13 +3,13 @@
 
     const cartsLength =ref(0)
 
-    watch(()=>carts.getCartsLength, ()=>{
-        cartsLength.value = carts.getCartsLength
+    watch(()=>carts.cartLength, ()=>{
+        cartsLength.value = carts.cartLength
     })
         
     onBeforeMount(async()=>{
         await carts.countAllCart()
-        cartsLength.value =  carts.getCartsLength
+        cartsLength.value =  carts.cartLength    
     })
 </script>
 

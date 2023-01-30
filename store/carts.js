@@ -1,24 +1,24 @@
-export const useCartsStore = defineStore('saveCarts', {
+export const useCartsStore = defineStore('saveCarts', () => {
     //...
-    state: () => {
-        return {
-            name: "",
-            carts: [],
-            cartLength: 0,
-        }
-    },
-    actions: {
-        addItem(item) {
-            this.carts.push(item)
-        },
-        async countAllCart() {
-            this.carts = await fetch("/api/cart").then((response) => response.json())
-            this.cartLength = this.carts.data.length
-        }
-    },
-    getters: {
-        getName: state => state.name,
-        getCarts: state => state.carts,
-        getCartsLength: state => state.cartLength
+    const name = ref('')
+    const carts = ref([])
+    const cartLength = ref(0);
+
+    function addItem() {
+        carts.value.push(item)
+    }
+    async function countAllCart() {
+        carts.value = await fetch("/api/cart").then((response) => response.json())
+        cartLength.value = carts.value.data.length
+    }
+
+    return {
+        name,
+        carts,
+        cartLength,
+        addItem,
+        countAllCart
     }
 });
+
+export default useCartsStore
